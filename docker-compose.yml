@@ -4,8 +4,8 @@ services:
     image: "auth-node"
     build: .
     command: node src/server.js
-    expose:
-      - "3000"
+    ports:
+      - "3000:3000"
     volumes:
       - .:/usr/src/app
       - /usr/src/app/node_modules
