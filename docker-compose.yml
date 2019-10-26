@@ -2,7 +2,7 @@ version: '3'
 services:
   web:
     build: .
-    command: node src/server.js
+    command: node server.js
     ports:
       - "3000:3000"
     volumes:
