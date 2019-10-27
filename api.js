@@ -9,10 +9,10 @@ apiRoutes.post('/signin', (req,res)=>{
     }, (err,user)=>{
         if(err) throw err;
         if(!user){
-            res.json({success: true, message: 'Authentication failed, No User'});
+            res.status(401).send({success: true, message: 'Authentication failed, No User'});
         }else if(user){
             if(user.password != req.body.password){
-                res.json({success: false, message: 'Authentication failed, invalid password'});
+                res.status(401).send({success: false, message: 'Authentication failed, invalid password'});
             }else{
                 const token = jwt.sign({user}, req.app.get('superSecret'));
                 res.json({
@@ -33,7 +33,7 @@ apiRoutes.use((req,res,next)=>{
     if (token){
         jwt.verify(token, req.app.get('superSecret'),(err, decoded)=>{
             if(err){
-                return res.json({
+                return res.status(401).send({
                     success: false,
                     message: 'authentication failure'
                 });
