@@ -27,7 +27,7 @@ paths:
         200:
           description: user created
           
-  /users:
+  /api/users:
 
     get:
       parameters:
@@ -42,7 +42,7 @@ paths:
           
         401:
           description: authentication failure
-  /signin:
+  /api/signin:
     post:
       summary: signin authentication.
       consumes:
