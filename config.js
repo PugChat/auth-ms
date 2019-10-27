@@ -1,4 +1,4 @@
 module.exports = {
     'secret': 'Hello Hello',
-    'database': 'mongodb://localhost/auth-database'
+    'database': 'mongodb://mongo:27017/auth-database'
 };
