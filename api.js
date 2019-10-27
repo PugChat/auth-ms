@@ -3,23 +3,19 @@ const apiRoutes = express.Router();
 const User = require('./app/models/user');
 const jwt = require('jsonwebtoken');
 
-apiRoutes.post('/signin', (req,res)=>{
+apiRoutes.get('/signin/:name/:password', (req,res)=>{
     User.findOne({
-        name: req.body.name
+        name: req.params.name
     }, (err,user)=>{
         if(err) throw err;
         if(!user){
-            res.status(401).send({success: true, message: 'Authentication failed, No User'});
+            res.status(401).send('Authentication failed, No User');
         }else if(user){
-            if(user.password != req.body.password){
-                res.status(401).send({success: false, message: 'Authentication failed, invalid password'});
+            if(user.password != req.params.password){
+                res.status(401).send('Authentication failed, invalid password');
             }else{
                 const token = jwt.sign({user}, req.app.get('superSecret'));
-                res.json({
-                    success: true,
-                    message: 'token',
-                    token 
-                });
+                res.send(token);
             }
         }{
 

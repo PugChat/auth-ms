@@ -26,7 +26,7 @@ app.get('/', (req, res) => {
     res.send('Hello Hello');
 });
 
-app.get('/signup/:name/:password', (req,res)=>{
+app.post('/signup/:name/:password', (req,res)=>{
     const testUser = new User({
         name: req.params.name,
         password: req.params.password,
@@ -35,9 +35,7 @@ app.get('/signup/:name/:password', (req,res)=>{
     testUser.save((err)=>{
         if (err) throw err;
         console.log('User saved succesfully');
-        res.json({
-            success: true
-        });
+        res.send('User saved succesfully');
     })
 });
 

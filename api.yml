@@ -9,7 +9,7 @@ host: localhost:3000
 basePath: /
 paths:
   /signup/{name}&{password}:
-    get:
+    post:
       summary: Sign up
       description: singin authentication
       parameters:
@@ -26,47 +26,21 @@ paths:
       responses:
         200:
           description: user created
-          
-  /api/users:
-
+  /api/signin/{name}&{password}:
     get:
-      parameters:
-      - name: x-access-token
-        in: header
-        description: token
+      - in: path
+        name: name
+        description: username
         required: true
         type: string
+      - in: path
+        name: password
+        description: user password
+        type: string
+        required: true
       responses:
         200:
-          description: Successful response, with a users array
-          
-        401:
-          description: authentication failure
-  /api/signin:
-    post:
-      summary: signin authentication.
-      consumes:
-        - application/json
-      parameters:
-        - in: body
-          name: user
-          description: the user.
-          schema:          # Must-have
-            type: object   # Data type
-            properties: 
-              name:
-                type: string
-              password:
-                type: string
-              admin: 
-                type: boolean
-            example:       # Sample data
-              name: user1
-              password: 1234
-              admin: true
-      responses:
-        200:
-          description: success message and token user
+          description: token user
         401:
           description: Unauthorized, user or password incorrect
         
