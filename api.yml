@@ -12,8 +12,6 @@ paths:
     get:
       summary: Sign up
       description: singin authentication
-      consumes:
-        - application/x-www-form-urlencoded
       parameters:
       - in: path
         name: name
