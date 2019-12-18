@@ -35,7 +35,7 @@ app.post('/signup/:name/:password', (req,res)=>{
         admin: true
     });
     testUser.save((err)=>{
-        var client = ldap.createClient({url: 'ldap://172.17.0.1:389'});
+        var client = ldap.createClient({url: 'ldap://sa-ldap:389'});
         DN = `cn=${req.params.name},dc=pugchat,dc=com,dc=co`;
         var newUser = {
             cn: req.params.name,

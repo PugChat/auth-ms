@@ -5,7 +5,7 @@ const jwt = require('jsonwebtoken');
 var ldap = require('ldapjs');
 
 apiRoutes.get('/signin/:name/:password', async (req,res)=>{
-    var client = ldap.createClient({url: 'ldap://172.17.0.1:389'});
+    var client = ldap.createClient({url: 'ldap://sa-ldap:389'});
     var dn =`cn=${req.params.name},dc=pugchat,dc=com,dc=co`;
     var password = req.params.password;    
     client.bind(dn, password, function (err) {
